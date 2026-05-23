@@ -1,0 +1,13 @@
+{
+  "udown": {
+    "downloader_type": "quotes",
+    "module": "downloaders.selenium_downloader",
+    "downloader_func": "download",
+    "downloader_args": "url, downloader_path, output_directory"
+  },
+  "events": [
+    "get('https://quotes.toscrape.com')",
+    "extract_structured(//span)",
+    "quit()"
+  ]
+}
