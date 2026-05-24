@@ -3,7 +3,7 @@
     "downloader_type": "quotes",
     "module": "downloaders.selenium_downloader",
     "downloader_func": "download",
-    "downloader_args": "downloader_path, output_directory=output_directory"
+    "downloader_args": "browser_options_path=chrome, selenium_options_path=downloader_path, output_directory=output_directory"
   },
   "events": [
     "get('https://quotes.toscrape.com')",

@@ -3,25 +3,7 @@
     "downloader_type": "imdb",
     "module": "downloaders.selenium_downloader",
     "downloader_func": "download",
-    "downloader_args": "url, downloader_path, output_directory=output_directory"
+    "downloader_args": "url, browser_options_path=undetected, selenium_options_path=downloader_path, output_directory=output_directory, proxy=proxy"
   },
-  "browser_type": "chrome",
-  "browser_options": {
-    "experimental_options": {
-      "detach": true
-    },
-    "arguments": [
-      "--ignore-certificate-errors",
-      "--disable-gpu",
-      "--allow-running-insecure-content"
-    ],
-    "capabilities": {
-      "goog:chromeOptions": {
-        "perfLoggingPrefs": {
-          "enableNetwork": true
-        }
-      }
-    }
-  },
-  "events": ["extract_structured(//a)", "quit()"]
+  "events": []
 }
