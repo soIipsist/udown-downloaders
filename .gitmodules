@@ -1,0 +1,3 @@
+[submodule "udown-private-downloaders"]
+	path = udown-private-downloaders
+	url = git@github.com:soIipsist/udown-private-downloaders.git
