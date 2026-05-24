@@ -22,21 +22,35 @@ get_json_value() {
   echo "$value"
 }
 
-define_downloaders(){
+define_downloaders() {
+    local dir="${1:-$(pwd)}"
+
+    if [[ ! -d "$dir" ]]; then
+        echo "Directory not found: $dir"
+        return 1
+    fi
 
     if ! command -v udown &>/dev/null; then
         echo "udown is required but not installed."
-        return
+        return 1
     fi
 
-    for path in *.json; do
-        downloader_type=$(get_json_value "udown.downloader_type" "$path" "$(basename $path)")
-        module=$(get_json_value "udown.module" "$path")
-        downloader_func=$(get_json_value "udown.downloader_func" "$path")
-        downloader_args=$(get_json_value "udown.downloader_args" "$path")
-        
-        udown downloaders add -t "$downloader_type" -m "$module" -f "$downloader_func" -args "$downloader_args" --downloader_path "$path"
-    done 
+    shopt -s nullglob
+
+    for path in "$dir"/*.json; do
+        downloader_type=$(get_json_value 'udown.downloader_type' "$path" "$(basename "$path")")
+        module=$(get_json_value 'udown.module' "$path")
+        downloader_func=$(get_json_value 'udown.downloader_func' "$path")
+        downloader_args=$(get_json_value 'udown.downloader_args' "$path")
+
+        udown downloaders add \
+            -t "$downloader_type" \
+            -m "$module" \
+            -f "$downloader_func" \
+            -args "$downloader_args" \
+            --downloader_path "$path"
+    done
 }
 
 define_downloaders
+define_downloaders "udown-private-downloaders"
