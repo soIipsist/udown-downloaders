@@ -35,7 +35,8 @@ define_downloaders(){
         downloader_func=$(get_json_value "udown.downloader_func" "$path")
         downloader_args=$(get_json_value "udown.downloader_args" "$path")
         
-        udown downloaders add -t "$downloader_type" -m "$module" -f "$downloader_func" -args "$downloader_args" -p "$path"
+        udown downloaders add -t "$downloader_type" -m "$module" -f "$downloader_func" -args "$downloader_args" --downloader_path "$path"
     done 
 }
-get_json_value "udown.downloader_args" "quotes.json"
+
+define_downloaders
