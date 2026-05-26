@@ -3,7 +3,10 @@
     "downloader_type": "imdb",
     "module": "downloaders.selenium_downloader",
     "downloader_func": "download",
-    "downloader_args": "url, browser_options_path=undetected, selenium_options_path=downloader_path, output_directory=output_directory, proxy=proxy"
+    "downloader_args": "url, browser_options_path=chrome, selenium_options_path=downloader_path, output_directory=output_directory, proxy=proxy"
   },
-  "events": []
+  "browser_options": {
+    "arguments": ["--window-size=1920,1080"]
+  },
+  "events": ["sleep(10)", "screenshot('hello.png')"]
 }
