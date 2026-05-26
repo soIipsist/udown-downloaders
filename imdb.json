@@ -6,7 +6,12 @@
     "downloader_args": "url, browser_options_path=chrome, selenium_options_path=downloader_path, output_directory=output_directory, proxy=proxy"
   },
   "browser_options": {
-    "arguments": ["--window-size=1920,1080"]
+    "arguments": ["--window-size=1920,1080"],
+    "capabilities": {
+      "goog:loggingPrefs": {
+        "performance": "ALL"
+      }
+    }
   },
-  "events": ["sleep(10)", "screenshot('hello.png')"]
+  "events": ["a = network()", "sleep(10)", "screenshot('hello.png')", "save(a)"]
 }
